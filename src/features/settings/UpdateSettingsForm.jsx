@@ -5,6 +5,22 @@ import Spinner from '../../ui/Spinner';
 import { useSettings } from './useSettings';
 import { useUpdateSetting } from './useUpdateSetting';
 
+/**
+ * UpdateSettingsForm is a React component that renders a form for updating hotel booking settings.
+ * It displays input fields for minimum and maximum booking nights, maximum guests per booking,
+ * and breakfast price. The form uses values from the current settings and updates them on blur.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered form for updating booking settings.
+ *
+ * @example
+ * <UpdateSettingsForm />
+ *
+ * @requires useSettings - Custom hook to fetch current settings and loading state.
+ * @requires useUpdateSetting - Custom hook to update a specific setting.
+ * @requires Spinner - Component to show loading state.
+ * @requires Form, FormRow, Input - UI components for form layout and input fields.
+ */
 function UpdateSettingsForm() {
 	const {
 		isLoading,

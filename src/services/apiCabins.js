@@ -1,5 +1,13 @@
 import supabase, { supabaseUrl } from './supabase';
 
+/**
+ * Fetches all cabins from the 'cabins' table using Supabase.
+ *
+ * @async
+ * @function
+ * @returns {Promise<Array<Object>>} Resolves to an array of cabin objects.
+ * @throws {Error} Throws an error if cabins could not be loaded.
+ */
 export async function getCabins() {
 	const { data, error } = await supabase.from('cabins').select('*');
 
@@ -11,6 +19,16 @@ export async function getCabins() {
 	return data;
 }
 
+/**
+ * Creates or edits a cabin entry in the database and handles image upload.
+ *
+ * @async
+ * @param {Object} newCabin - The cabin data to create or update.
+ * @param {string} [newCabin.image] - The image file or image path for the cabin.
+ * @param {string} [id] - The ID of the cabin to edit. If not provided, a new cabin is created.
+ * @returns {Promise<Object>} The created or updated cabin data.
+ * @throws {Error} If the cabin could not be created or the image could not be uploaded.
+ */
 export async function createEditCabin(newCabin, id) {
 	const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
 
@@ -57,6 +75,15 @@ export async function createEditCabin(newCabin, id) {
 	return data;
 }
 
+/**
+ * Deletes a cabin from the 'cabins' table by its ID.
+ *
+ * @async
+ * @function deleteCabin
+ * @param {number|string} id - The unique identifier of the cabin to delete.
+ * @returns {Promise<Object>} The data returned from the delete operation.
+ * @throws {Error} Throws an error if the cabin could not be deleted.
+ */
 export async function deleteCabin(id) {
 	const { data, error } = await supabase.from('cabins').delete().eq('id', id);
 
